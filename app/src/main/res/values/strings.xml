@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DBProjekt</string>
+    <string name="textLoginButton">Login</string>
+    <string name="textViewLogin">Login:</string>
+    <string name="managerNameLogin">Manager</string>
+    <string name="managerPasswordLogin">Manager Password</string>
+    <string name="driverNameLogin">Driver</string>
+    <string name="driverPasswordLogin">Driver Password</string>
+
+</resources>
