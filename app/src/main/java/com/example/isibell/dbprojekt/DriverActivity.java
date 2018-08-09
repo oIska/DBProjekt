@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class FahrerActivity extends AppCompatActivity {
+public class DriverActivity extends AppCompatActivity {
     private Button getOrderButton, orderDoneButton;
     private TextView targetPositionView;
     private int PersNr;
