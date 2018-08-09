@@ -17,7 +17,7 @@ public class Driver {
     private int[][] position;
 
     @ColumnInfo
-    private boolean status;
+    private boolean onTour;
 
     public int getPersNr() {
         return persNr;
@@ -43,11 +43,12 @@ public class Driver {
         this.position = position;
     }
 
-    public boolean isStatus() {
-        return status;
+    public void setOnTour(boolean onTour) {
+        this.onTour = onTour;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public boolean isOnTour() {
+
+        return onTour;
     }
 }
