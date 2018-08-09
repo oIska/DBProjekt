@@ -3,6 +3,7 @@ package com.example.isibell.dbprojekt;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,22 +26,23 @@ public class LoginActivity extends AppCompatActivity {
         passwordTextView = (EditText)findViewById(R.id.userPasswordEditText);
         loginButton = (Button) findViewById(R.id.loginButton);
 
-        userNameEingabe = userNameEditText.getText().toString();
-        userPasswordEingabe = passwordTextView.getText().toString();
-
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // funktioniert nicht ....
-                if (userNameEingabe.contentEquals("@string/managerNameLogin") && userPasswordEingabe.contentEquals("@string/managerPasswordLogin")){
-                    Intent intent = new Intent(LoginActivity.this, ManagerActivity.class);
-                    startActivity(intent);
-                }else if (userNameEingabe.contentEquals("@string/driverNameLogin") && userPasswordEingabe.contentEquals("@string/driverPasswordLogin")){
-                    Intent intent = new Intent(LoginActivity.this, FahrerActivity.class);
-                    startActivity(intent);
+            public void onClick(View view) {
+
+                userNameEingabe = userNameEditText.getText().toString();
+                userPasswordEingabe = passwordTextView.getText().toString();
+
+                if (userNameEingabe.equals("Manager") && userPasswordEingabe.equals("manager")){
+                    Intent managerIntent = new Intent(LoginActivity.this, ManagerActivity.class);
+                    startActivity(managerIntent);
+                } else if (userNameEingabe.equals("Fahrer") && userPasswordEingabe.equals("fahrer")){
+                    Intent driverIntent = new Intent(LoginActivity.this, FahrerActivity.class);
+                    startActivity(driverIntent);
                 }
             }
         });
+
     }
 }
