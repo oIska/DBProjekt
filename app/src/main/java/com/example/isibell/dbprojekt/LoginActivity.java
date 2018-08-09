@@ -37,8 +37,17 @@ public class LoginActivity extends AppCompatActivity {
                 if (userNameEingabe.equals("Manager") && userPasswordEingabe.equals("manager")){
                     Intent managerIntent = new Intent(LoginActivity.this, ManagerActivity.class);
                     startActivity(managerIntent);
-                } else if (userNameEingabe.equals("Fahrer") && userPasswordEingabe.equals("fahrer")){
+                } else if (userNameEingabe.equals("Fahrer1") && userPasswordEingabe.equals("fahrer")){
                     Intent driverIntent = new Intent(LoginActivity.this, FahrerActivity.class);
+                    driverIntent.putExtra("PersNr", 1);
+                    startActivity(driverIntent);
+                } else if (userNameEingabe.equals("Fahrer2") && userPasswordEingabe.equals("fahrer")){
+                    Intent driverIntent = new Intent(LoginActivity.this, FahrerActivity.class);
+                    driverIntent.putExtra("PersNr", 2);
+                    startActivity(driverIntent);
+                } else if (userNameEingabe.equals("Fahrer3") && userPasswordEingabe.equals("fahrer")){
+                    Intent driverIntent = new Intent(LoginActivity.this, FahrerActivity.class);
+                    driverIntent.putExtra("PersNr", 3);
                     startActivity(driverIntent);
                 }
             }

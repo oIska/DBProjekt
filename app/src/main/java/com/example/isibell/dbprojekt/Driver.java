@@ -19,5 +19,35 @@ public class Driver {
     @ColumnInfo
     private boolean status;
 
+    public int getPersNr() {
+        return persNr;
+    }
 
+    public void setPersNr(int persNr) {
+        this.persNr = persNr;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int[][] getPosition() {
+        return position;
+    }
+
+    public void setPosition(int[][] position) {
+        this.position = position;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }
