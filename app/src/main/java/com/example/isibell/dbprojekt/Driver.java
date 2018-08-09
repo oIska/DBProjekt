@@ -10,14 +10,9 @@ public class Driver {
     @PrimaryKey(autoGenerate = true)
     private int persNr;
 
-    @ColumnInfo(name = "name")
     private String name;
-
-    @ColumnInfo
-    private int[][] position;
-
-    @ColumnInfo
-    private boolean status;
+    private int position;
+    private boolean onTour;
 
     public int getPersNr() {
         return persNr;
@@ -35,19 +30,19 @@ public class Driver {
         this.name = name;
     }
 
-    public int[][] getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(int[][] position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isOnTour() {
+        return onTour;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setOnTour(boolean onTour) {
+        this.onTour = onTour;
     }
 }

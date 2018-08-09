@@ -39,7 +39,6 @@ public class FahrerActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void initUI() {
