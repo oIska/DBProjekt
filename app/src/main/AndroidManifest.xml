@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ManagerActivity" />
-        <activity android:name=".FahrerActivity"></activity>
+        <activity android:name=".DriverActivity"></activity>
     </application>
 
 </manifest>
