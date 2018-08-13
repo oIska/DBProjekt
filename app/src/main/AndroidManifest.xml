@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ManagerActivity" />
+        <activity android:name=".DriverActivity"></activity>
         <activity android:name=".FahrerActivity" />
     </application>
 
