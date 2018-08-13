@@ -41,8 +41,16 @@ public class ManagerActivity extends AppCompatActivity {
         createOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // die sollten ja auch integer sein wie konvertiert man hier richtig zu nem Integer ?
                startPositionText = startPositionEditText.getText().toString();
                targetPositionText = targetPositionEditText.getText().toString();
+
+              // Auftrag nextAuftrag = new Auftrag();
+               //nextAuftrag.setZielstandort(targetPositionText);
+               // eine funktion für timestamp suchen
+                //alle sachen belegen
+
+                // Hannes fragen wo den Auftragsbearbeitungs algorithmus hinpacken weil es theoretisch überall funktionieren muss
 
 
             }
