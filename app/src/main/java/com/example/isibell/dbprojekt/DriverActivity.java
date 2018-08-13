@@ -32,7 +32,7 @@ public class DriverActivity extends AppCompatActivity {
 
         getOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {       // umschreiben
                 newOrder = database.Dao().getNewOrder(1, false);
 
                 int adress = newOrder.getTargetAdress();

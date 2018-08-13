@@ -12,12 +12,14 @@
         android:id="@+id/editText_start_position"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="Startposition"/>
 
     <EditText
         android:id="@+id/editText_target_position"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="Zielposition"/>
 
     <Button
