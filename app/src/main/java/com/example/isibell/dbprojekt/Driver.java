@@ -12,11 +12,7 @@ public class Driver {
 
     @ColumnInfo(name = "name")
     private String name;
-
-    @ColumnInfo
-    private int[][] position;
-
-    @ColumnInfo
+    private int position;
     private boolean onTour;
 
     public int getPersNr() {
@@ -43,12 +39,11 @@ public class Driver {
         this.position = position;
     }
 
-    public void setOnTour(boolean onTour) {
-        this.onTour = onTour;
+    public boolean isStatus() {
+        return status;
     }
 
-    public boolean isOnTour() {
-
-        return onTour;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
