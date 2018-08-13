@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    tools:context=".FahrerActivity">
+    tools:context=".DriverActivity">
 
     <Button
         android:id="@+id/button_get_order"
