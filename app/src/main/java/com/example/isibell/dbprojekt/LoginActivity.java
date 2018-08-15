@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 userNameInput = userNameEditText.getText().toString();
                 userPasswordInput = passwordTextView.getText().toString();
+                int persNr = Integer.parseInt(userNameInput);
 
                 userNameEditText.setText("");
                 passwordTextView.setText("");
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(managerIntent);
                 } else if (userPasswordInput.equals("fahrer")) {
                     Intent driverIntent = new Intent(LoginActivity.this, DriverActivity.class);
-                    driverIntent.putExtra("PersNr", String.valueOf(userNameInput));
+                    driverIntent.putExtra("PersNr", persNr);
                     startActivity(driverIntent);
                 }
             }
