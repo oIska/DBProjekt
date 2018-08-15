@@ -18,7 +18,6 @@ public class DriverActivity extends AppCompatActivity {
 
     private Order newOrder;
     private Driver driver;
-    private int PersNr;
 
 
     @Override
@@ -43,7 +42,7 @@ public class DriverActivity extends AppCompatActivity {
 
                 char[] driverPosition = Integer.toString(driver.getPosition()).toCharArray();
 
-                for (int i = 1; i < startPositions.length; i++){
+                for (int i = 0; i < startPositions.length; i++){
                     char[] adress = Integer.toString(startPositions[i]).toCharArray();
 
                     int intermediary = Math.abs(Character.getNumericValue(adress[0]) - Character.getNumericValue(driverPosition[0])) + Math.abs(Character.getNumericValue(adress[1]) - Character.getNumericValue(driverPosition[1]));

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,6 +56,8 @@ public class ManagerActivity extends AppCompatActivity {
                nextOrder.setTimestamp(timeStamp);
                nextOrder.setDriverNr(0);
                db.Dao().addOrder(nextOrder);
+
+               Toast.makeText(getApplicationContext(), "Test DB", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -68,39 +71,10 @@ public class ManagerActivity extends AppCompatActivity {
                 nextDriver.setPosition(00);
                 nextDriver.setOnTour(false);
                 db.Dao().addDriver(nextDriver);
+
+                Toast.makeText(getApplicationContext(), "Test DB", Toast.LENGTH_LONG).show();
             }
         });
 
     }
 }
-
-/*  createOrderButton.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View view) {
-        // die sollten ja auch integer sein wie konvertiert man hier richtig zu nem Integer ?
-        startPositionText = startPositionEditText.getText().toString();
-        targetPositionText = targetPositionEditText.getText().toString();
-
-        // Auftrag nextAuftrag = new Auftrag();
-        //nextAuftrag.setZielstandort(targetPositionText);
-        // eine funktion für timestamp suchen
-        //alle sachen belegen
-
-        // Hannes fragen wo den Auftragsbearbeitungs algorithmus hinpacken weil es theoretisch überall funktionieren muss
-
-
-        }
-        });
-
-        createDriverButton.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View view) {
-        dirverNameText = dirverNameEditText.getText().toString();
-        Driver nextDriver = new Driver();
-        nextDriver.setName(dirverNameText);
-        nextDriver.setPosition(new int[0][0]);
-        nextDriver.setOnTour(false);
-        db.Dao().insertDriver(nextDriver);
-        }
-        });
-*/
