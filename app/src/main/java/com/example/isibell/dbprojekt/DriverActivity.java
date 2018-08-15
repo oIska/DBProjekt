@@ -34,9 +34,14 @@ public class DriverActivity extends AppCompatActivity {
         getOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pickNewOrder();
-                database.Dao().updateDriverStatus(true, PersNr);
-                database.Dao().setDriverForOrder(PersNr, newOrder.getOrderNr());
+                try {
+                    pickNewOrder();
+                    database.Dao().updateDriverStatus(true, PersNr);
+                    database.Dao().setDriverForOrder(PersNr, newOrder.getOrderNr());
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "No orders in DB", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
