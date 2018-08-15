@@ -12,11 +12,13 @@ import android.widget.Toast;
 public class DriverActivity extends AppCompatActivity {
     private Button getOrderButton, orderDoneButton;
     private TextView targetPositionView;
-    private int PersNr;
 
     private AppDatabase database;
 
     private Order newOrder;
+    private Driver driver;
+    private int PersNr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +30,35 @@ public class DriverActivity extends AppCompatActivity {
 
         database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database").allowMainThreadQueries().build();
 
-        testOrder();
+        driver = database.Dao().getDriverFromID(PersNr);
 
         getOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newOrder = database.Dao().getNewOrder(1, false);
+                // Startadressen aus DB holen, neuen Auftrag annehmen, Fahrerstatus aktualisieren
+                int[] startPositions = database.Dao().getStartAdresses();
+                int minDiff = 20;
+                int newStartPosition = 0;
 
-                int adress = newOrder.getTargetAdress();
-                String target = Integer.toString(adress);
+                char[] driverPosition = Integer.toString(driver.getPosition()).toCharArray();
 
+                for (int i = 1; i < startPositions.length; i++){
+                    char[] adress = Integer.toString(startPositions[i]).toCharArray();
+
+                    int intermediary = Math.abs(Character.getNumericValue(adress[0]) - Character.getNumericValue(driverPosition[0])) + Math.abs(Character.getNumericValue(adress[1]) - Character.getNumericValue(driverPosition[1]));
+                    if (intermediary < minDiff){
+                        minDiff = intermediary;
+                        newStartPosition = startPositions[i];
+                    }
+                }
+
+                newOrder = database.Dao().getNewOrder(newStartPosition);
+
+                String target = Integer.toString(newOrder.getTargetAdress());
                 targetPositionView.setText(target);
+
+                database.Dao().updateDriverStatus(true, PersNr);
+                database.Dao().setDriverForOrder(PersNr, newOrder.getOrderNr());
 
             }
         });
@@ -46,22 +66,15 @@ public class DriverActivity extends AppCompatActivity {
         orderDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newOrder.setDone(true);
+                // Auftrag als erledigt markieren, Fahrerposition aktualisieren und Fahrerstatus aktualisieren
+                database.Dao().setDone(true, newOrder.getOrderNr());
+                database.Dao().updatePosition(newOrder.getTargetAdress(), PersNr);
+                database.Dao().updateDriverStatus(false, PersNr);
+
                 targetPositionView.setText("New target...");
             }
         });
 
-    }
-
-    private void testOrder() {
-        Order test = new Order();
-        test.setDone(false);
-        test.setStartAdress(23);
-        test.setDriverNr(1);
-        test.setTargetAdress(11);
-        database.Dao().addOrder(test);
-
-        Toast.makeText(getApplicationContext(), "Test DB", Toast.LENGTH_LONG).show();
     }
 
     private void initUI() {
