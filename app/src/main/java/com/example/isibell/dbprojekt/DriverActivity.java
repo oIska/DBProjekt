@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +13,6 @@ import android.widget.Toast;
 public class DriverActivity extends AppCompatActivity {
     private Button getOrderButton, orderDoneButton;
     private TextView targetPositionView;
-    private int PersNr;
 
     private AppDatabase database;
 
@@ -31,22 +31,26 @@ public class DriverActivity extends AppCompatActivity {
 
         database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database").allowMainThreadQueries().build();
 
-        driver = database.Dao().getDriverFromID(PersNr);
 
         getOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                driver = database.Dao().getDriverFromID(PersNr);
+
                 // Startadressen aus DB holen, neuen Auftrag annehmen, Fahrerstatus aktualisieren
-                int[] startPositions = database.Dao().getStartAdresses();
+                int[] startPositions = database.Dao().getStartAdresses(false, 0);
+
                 int minDiff = 20;
                 int newStartPosition = 0;
 
-                char[] driverPosition = Integer.toString(driver.getPosition()).toCharArray();
+                String driverPosition = String.valueOf(driver.getPosition());
+                Log.d("LOG_DRIVERPOSIOTION", driverPosition);
 
-                for (int i = 1; i < startPositions.length; i++){
-                    char[] adress = Integer.toString(startPositions[i]).toCharArray();
+                for (int i = 0; i < startPositions.length; i++){
+                    String adress = String.valueOf(startPositions[i]);
+                    Log.d("LOG_ORDERADRESS", adress);
 
-                    int intermediary = Math.abs(Character.getNumericValue(adress[0]) - Character.getNumericValue(driverPosition[0])) + Math.abs(Character.getNumericValue(adress[1]) - Character.getNumericValue(driverPosition[1]));
+                    int intermediary = Math.abs(adress.charAt(0) - driverPosition.charAt(0)) + Math.abs(adress.charAt(1) - driverPosition.charAt(1));
                     if (intermediary < minDiff){
                         minDiff = intermediary;
                         newStartPosition = startPositions[i];
@@ -56,7 +60,7 @@ public class DriverActivity extends AppCompatActivity {
                 newOrder = database.Dao().getNewOrder(newStartPosition);
 
                 String target = Integer.toString(newOrder.getTargetAdress());
-                targetPositionView.setText(target);
+                targetPositionView.setText("Your next tour: " + newStartPosition + " to " + target);
 
                 database.Dao().updateDriverStatus(true, PersNr);
                 database.Dao().setDriverForOrder(PersNr, newOrder.getOrderNr());
@@ -70,6 +74,10 @@ public class DriverActivity extends AppCompatActivity {
                 // Auftrag als erledigt markieren, Fahrerposition aktualisieren und Fahrerstatus aktualisieren
                 database.Dao().setDone(true, newOrder.getOrderNr());
                 database.Dao().updatePosition(newOrder.getTargetAdress(), PersNr);
+
+                Driver driver2 = database.Dao().getDriverFromID(PersNr);
+                Log.d("UPDATE_POSITION", String.valueOf(driver2.getPosition()));
+
                 database.Dao().updateDriverStatus(false, PersNr);
 
                 targetPositionView.setText("New target...");
