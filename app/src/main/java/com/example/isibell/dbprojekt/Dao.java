@@ -38,4 +38,7 @@ public interface Dao {
 
     @Query("UPDATE driver SET onTour = :onTour WHERE PersNr = :PersNr")
     public void updateDriverStatus(boolean onTour, int PersNr);
+
+    @Query("UPDATE driver SET name = :name WHERE PersNr = :persNr")
+    public void updateDriverName(String name, int persNr);
 }
