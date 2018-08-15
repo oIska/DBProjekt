@@ -50,11 +50,17 @@ public class DriverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Auftrag als erledigt markieren, Fahrerposition aktualisieren und Fahrerstatus aktualisieren
-                database.Dao().setDone(true, newOrder.getOrderNr());
-                database.Dao().updatePosition(newOrder.getTargetAdress(), PersNr);
-                database.Dao().updateDriverStatus(false, PersNr);
+                try{
+                    database.Dao().setDone(true, newOrder.getOrderNr());
+                    database.Dao().updatePosition(newOrder.getTargetAdress(), PersNr);
+                    database.Dao().updateDriverStatus(false, PersNr);
 
-                targetPositionView.setText("New target...");
+                    targetPositionView.setText("New target...");
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "You don't have an order", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
