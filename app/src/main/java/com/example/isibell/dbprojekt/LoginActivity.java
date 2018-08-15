@@ -109,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
         o5.setDriverNr(0);
         db.Dao().addOrder(o5);
 
-
         String order = "";
         Order[] orders = db.Dao().getAllOrders();
         for (Order o : orders) {

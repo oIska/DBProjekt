@@ -35,33 +35,7 @@ public class DriverActivity extends AppCompatActivity {
         getOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                driver = database.Dao().getDriverFromID(PersNr);
-
-                // Startadressen aus DB holen, neuen Auftrag annehmen, Fahrerstatus aktualisieren
-                int[] startPositions = database.Dao().getStartAdresses(false, 0);
-
-                int minDiff = 20;
-                int newStartPosition = 0;
-
-                String driverPosition = String.valueOf(driver.getPosition());
-                Log.d("LOG_DRIVERPOSIOTION", driverPosition);
-
-                for (int i = 0; i < startPositions.length; i++){
-                    String adress = String.valueOf(startPositions[i]);
-                    Log.d("LOG_ORDERADRESS", adress);
-
-                    int intermediary = Math.abs(adress.charAt(0) - driverPosition.charAt(0)) + Math.abs(adress.charAt(1) - driverPosition.charAt(1));
-                    if (intermediary < minDiff){
-                        minDiff = intermediary;
-                        newStartPosition = startPositions[i];
-                    }
-                }
-
-                newOrder = database.Dao().getNewOrder(newStartPosition);
-
-                String target = String.valueOf(newOrder.getTargetAdress());
-                targetPositionView.setText("Your next tour: " + newStartPosition + " to " + target);
-
+                pickNewOrder();
                 database.Dao().updateDriverStatus(true, PersNr);
                 database.Dao().setDriverForOrder(PersNr, newOrder.getOrderNr());
 
@@ -84,6 +58,35 @@ public class DriverActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void pickNewOrder() {
+        driver = database.Dao().getDriverFromID(PersNr);
+
+        // Startadressen aus DB holen, neuen Auftrag annehmen, Fahrerstatus aktualisieren
+        int[] startPositions = database.Dao().getStartAdresses(false, 0);
+
+        int minDiff = 20;
+        int newStartPosition = 0;
+
+        String driverPosition = String.valueOf(driver.getPosition());
+        Log.d("LOG_DRIVERPOSIOTION", driverPosition);
+
+        for (int i = 0; i < startPositions.length; i++){
+            String adress = String.valueOf(startPositions[i]);
+            Log.d("LOG_ORDERADRESS", adress);
+
+            int intermediary = Math.abs(adress.charAt(0) - driverPosition.charAt(0)) + Math.abs(adress.charAt(1) - driverPosition.charAt(1));
+            if (intermediary < minDiff){
+                minDiff = intermediary;
+                newStartPosition = startPositions[i];
+            }
+        }
+
+        newOrder = database.Dao().getNewOrder(newStartPosition);
+
+        String target = String.valueOf(newOrder.getTargetAdress());
+        targetPositionView.setText("Your next tour: " + newStartPosition + " to " + target);
     }
 
     private void initUI() {
