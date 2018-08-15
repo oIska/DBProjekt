@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class DriverActivity extends AppCompatActivity {
     private Button getOrderButton, orderDoneButton;
     private TextView targetPositionView;
+    private int PersNr;
 
     private AppDatabase database;
 

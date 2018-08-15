@@ -2,9 +2,8 @@
     <string name="app_name">DBProjekt</string>
     <string name="textLoginButton">Login</string>
     <string name="textViewLogin">Login:</string>
-    <string name="managerNameLogin">Manager</string>
-    <string name="managerPasswordLogin">Manager Password</string>
-    <string name="driverNameLogin">Driver</string>
-    <string name="driverPasswordLogin">Driver Password</string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="text_button_create_driver">Create driver</string>
+    <string name="text_button_create_order">Create order</string>
 
 </resources>
