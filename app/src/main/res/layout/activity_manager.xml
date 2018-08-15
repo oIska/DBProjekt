@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:orientation="vertical"
     tools:context=".ManagerActivity">
 
@@ -13,31 +14,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Startposition"/>
+        android:hint="Enter startposition"/>
 
     <EditText
         android:id="@+id/editText_target_position"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Zielposition"/>
+        android:hint="Enter targetposition"/>
 
     <Button
         android:id="@+id/button_create_order"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:text="@string/text_button_create_order"/>
 
     <EditText
         android:id="@+id/editText_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name des Fahrers"/>
+        android:hint="Enter name of driver"/>
 
     <Button
         android:id="@+id/button_create_driver"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:text="@string/text_button_create_driver"/>
+
+    <EditText
+        android:id="@+id/editText_driverNr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter PersNr"/>
+
+    <EditText
+        android:id="@+id/editText_newDriverName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter new name"/>
+
+    <Button
+        android:id="@+id/button_updateDriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_update_driver"/>
 
 </LinearLayout>
