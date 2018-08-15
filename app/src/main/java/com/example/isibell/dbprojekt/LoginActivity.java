@@ -48,20 +48,15 @@ public class LoginActivity extends AppCompatActivity {
                 userNameInput = userNameEditText.getText().toString();
                 userPasswordInput = passwordTextView.getText().toString();
 
+                userNameEditText.setText("");
+                passwordTextView.setText("");
+
                 if (userNameInput.equals("Manager") && userPasswordInput.equals("manager")) {
                     Intent managerIntent = new Intent(LoginActivity.this, ManagerActivity.class);
                     startActivity(managerIntent);
-                } else if (userNameInput.equals("Fahrer1") && userPasswordInput.equals("fahrer")) {
+                } else if (userPasswordInput.equals("fahrer")) {
                     Intent driverIntent = new Intent(LoginActivity.this, DriverActivity.class);
-                    driverIntent.putExtra("PersNr", 1);
-                    startActivity(driverIntent);
-                } else if (userNameInput.equals("Fahrer2") && userPasswordInput.equals("fahrer")) {
-                    Intent driverIntent = new Intent(LoginActivity.this, DriverActivity.class);
-                    driverIntent.putExtra("PersNr", 2);
-                    startActivity(driverIntent);
-                } else if (userNameInput.equals("Fahrer3") && userPasswordInput.equals("fahrer")) {
-                    Intent driverIntent = new Intent(LoginActivity.this, DriverActivity.class);
-                    driverIntent.putExtra("PersNr", 3);
+                    driverIntent.putExtra("PersNr", String.valueOf(userNameInput));
                     startActivity(driverIntent);
                 }
             }

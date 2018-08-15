@@ -59,7 +59,7 @@ public class DriverActivity extends AppCompatActivity {
 
                 newOrder = database.Dao().getNewOrder(newStartPosition);
 
-                String target = Integer.toString(newOrder.getTargetAdress());
+                String target = String.valueOf(newOrder.getTargetAdress());
                 targetPositionView.setText("Your next tour: " + newStartPosition + " to " + target);
 
                 database.Dao().updateDriverStatus(true, PersNr);
