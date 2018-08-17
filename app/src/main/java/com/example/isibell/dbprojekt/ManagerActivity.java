@@ -57,12 +57,15 @@ public class ManagerActivity extends AppCompatActivity {
     private void updateDriverName() {
         int persNr = Integer.parseInt(driverIdEditText.getText().toString());
         db.Dao().updateDriverName(driverNewNameEditText.getText().toString(), persNr);
+        driverNewNameEditText.setText("");
+        driverIdEditText.setText("");
 
         Toast.makeText(getApplicationContext(), "DB action successful", Toast.LENGTH_LONG).show();
     }
 
     private void addNewDriverToDB() {
         String driverNameText = driverNameEditText.getText().toString();
+        driverNameEditText.setText("");
 
         Driver nextDriver = new Driver();
         nextDriver.setName(driverNameText);
@@ -76,6 +79,8 @@ public class ManagerActivity extends AppCompatActivity {
     private void addNewOrderToDB() {
         int startPositionText = Integer.parseInt(startPositionEditText.getText().toString());
         int targetPositionText = Integer.parseInt(targetPositionEditText.getText().toString());
+        startPositionEditText.setText("");
+        targetPositionEditText.setText("");
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd_HH:mm:ss").format(new Date());
 
         Order nextOrder = new Order();
